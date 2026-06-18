@@ -2,3 +2,8 @@ node_modules
 
 # Ignore files
 .DS_Store
+/dist
+
+# Ignore directories
+/node_modules
+/dist
