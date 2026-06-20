@@ -7,9 +7,9 @@ const INVESTMENTS = [
     id: 1,
     address: "4218 Kingshighway Blvd",
     link: "https://mw-properties-c2j5cshcx-dte-solutions.vercel.app/",
-    thumbnail: "/mwproperties_thumbnail.png",
+    thumbnail: "/mwpropertiesmain.png",
     link: "https://mw-properties-c2j5cshcx-dte-solutions.vercel.app/",
-    thumbnail: "/mwproperties_thumbnail.png",
+    thumbnail: "/mwpropertiesmain.png",
     city: "St. Louis, MO 63116",
     type: "Single Family · 3BR / 2BA",
     sqft: "1,840",
@@ -425,7 +425,7 @@ export default function App() {
   const mono = "'Space Mono', monospace";
   const serif = "'Playfair Display', serif";
 
-  const navLinks = [["about","About"],["invest","Invest"],["portfolio","Portfolio"],["rentals","Rentals"]];
+  const navLinks = [["about","About"],["invest","Invest"],["portfolio","Portfolio"],["rentals","Rentals"],["breakdown","Breakdown"]];
 
   const Eyebrow = ({ text, dark }) => (
     <p style={{ fontFamily: mono, fontSize: "0.65rem", letterSpacing: "0.24em", textTransform: "uppercase", color: dark ? "#8A6E28" : G, marginBottom: "14px" }}>{text}</p>
@@ -615,9 +615,8 @@ export default function App() {
           <div style={{ fontFamily: serif, fontSize: "clamp(1.3rem, 4vw, 1.6rem)", fontWeight: 700, color: INK, marginBottom: "6px" }}>Ready to Invest With Marcus?</div>
           <div style={{ fontSize: "0.87rem", color: "rgba(13,13,11,0.6)" }}>Full deal packets available on request. Let's talk numbers.</div>
         </div>
-        <button onClick={() => triggerModal("general")} className="mw-ghost-btn" style={{ display: "inline-block", border: `1px solid ${INK}`, fontSize: "0.7rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: G, background: INK, padding: "14px 32px", textDecoration: "none", transition: "all 0.2s", whiteSpace: "nowrap", cursor: "pointer" }}>
-          Get in Touch →
-        </button>
+          <a href="/mwproperties-breakdown.html" style={{ display: "inline-block", border: `1px solid ${INK}`, fontSize: "0.7rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: G, background: INK, padding: "14px 32px", textDecoration: "none", transition: "all 0.2s", whiteSpace: "nowrap", cursor: "pointer", marginLeft: "12px" }}>Breakdown</a>
+
       </div>
 
       {/* ── FOOTER ── */}

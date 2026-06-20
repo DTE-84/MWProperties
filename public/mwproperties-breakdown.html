@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MW Properties & Investments | Real Estate Portfolio Breakdown</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Jura:wght@300;700&family=Bebas+Neue&family=Inter:wght@400;900&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            --obsidian: #050505;
+            --kinetic-gold: #C09A3C;
+            --charcoal: #111111;
+        }
+        body {
+            background-color: var(--obsidian);
+            color: #FFFFFF;
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+        .font-display { font-family: 'Bebas Neue', cursive; }
+        .font-tech { font-family: 'Jura', sans-serif; }
+        
+        .glass-card {
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 24px;
+            transition: all 0.4s ease;
+        }
+        .glass-card:hover {
+            border-color: var(--kinetic-gold);
+            background: rgba(15, 15, 15, 0.9);
+        }
+        .text-gradient-gold {
+            background: linear-gradient(135deg, #C09A3C, #F59E0B);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .gold-glow { filter: drop-shadow(0 0 10px rgba(192, 154, 60, 0.4)); }
+    </style>
+</head>
+<body class="selection:bg-amber-500/30 overflow-x-hidden">
+
+    <!-- Nav -->
+    <nav class="fixed top-0 left-0 w-full z-50 p-8 flex justify-between items-center backdrop-blur-md border-b border-white/5">
+        <div class="flex items-center gap-6">
+            <a href="index.html" class="flex items-center gap-4 group">
+                <div class="w-8 h-8 bg-zinc-900 border border-[#C09A3C]/40 rounded flex items-center justify-center font-black text-[#C09A3C] group-hover:bg-[#C09A3C] group-hover:text-black transition-all">DTE</div>
+                <span class="font-tech tracking-[0.3em] uppercase text-[9px] text-white/40">Hub</span>
+            </a>
+            <div class="h-6 w-px bg-white/10"></div>
+            <div class="flex items-center gap-3">
+                <span class="font-display text-xl tracking-widest text-[#C09A3C]">MW PROPERTIES</span>
+            </div>
+        </div>
+        <div class="hidden md:flex gap-8 text-[9px] font-black uppercase tracking-widest text-white/60">
+            <a href="#vision" class="hover:text-white transition-colors">Vision</a>
+            <a href="#pipeline" class="hover:text-white transition-colors">Funnel</a>
+            <a href="#tech" class="hover:text-white transition-colors">Architecture</a>
+            <a href="https://dte-84.github.io/MWProperties/" class="text-[#C09A3C] hover:underline">Launch Site</a>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section id="hero" class="min-h-screen flex flex-col justify-center items-center relative px-8 pt-32 pb-20">
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(192,154,60,0.1),transparent_70%)]"></div>
+        
+        <div class="relative z-10 text-center max-w-5xl">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 mb-8 scale-90 md:scale-100">
+                <i data-lucide="home" class="w-4 h-4 text-[#C09A3C]"></i>
+                <span class="text-[10px] font-bold tracking-[0.2em] uppercase text-white/80">Real Estate Renovation & Investor Portal</span>
+            </div>
+
+            <h1 class="font-display text-5xl sm:text-7xl md:text-[10rem] tracking-tighter leading-[0.9] mb-6 text-gradient-gold gold-glow">
+                MW PROPERTIES
+            </h1>
+
+            <p class="text-xl md:text-3xl text-white/60 leading-relaxed mb-12 font-light max-w-3xl mx-auto">
+                "Turning <span class="italic text-[#C09A3C]">distressed</span> residential real estate into distinguished, high-yield assets across St. Louis and Quincy."
+            </p>
+
+            <div class="flex flex-wrap justify-center gap-6">
+                <a href="https://dte-84.github.io/MWProperties/" class="px-10 py-5 bg-[#C09A3C] text-black font-black uppercase text-xs rounded-full shadow-xl shadow-[#C09A3C]/20 hover:scale-105 transition-all inline-block">Launch Showcase</a>
+                <a href="#tech" class="px-10 py-5 border border-white/10 text-white font-black uppercase text-xs rounded-full hover:bg-white/5 transition-all inline-block">Architecture Specs</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vision -->
+    <section id="vision" class="py-32 px-8 max-w-7xl mx-auto border-t border-white/5">
+        <div class="flex flex-col lg:flex-row gap-20 items-center mb-20">
+            <div class="flex-1">
+                <span class="font-tech text-[10px] uppercase tracking-[0.5em] text-[#C09A3C] font-bold block mb-4">Case Study Context</span>
+                <h2 class="font-display text-4xl sm:text-6xl md:text-8xl text-white leading-none">THE RESTORATION <br/><span class="text-white/10">GAP.</span></h2>
+                <p class="text-lg text-white/40 mt-6 max-w-xl leading-relaxed">
+                    Undervalued properties require structured project underwriting and hands-on craftsmanship. MW Properties bridges the gap by pairing rigorous contractor coordination with an open-book equity partnership structure.
+                </p>
+            </div>
+            <div class="flex-1 glass-card p-10 flex items-center justify-center bg-gradient-to-br from-zinc-900 to-black">
+                <div class="text-center">
+                  <div class="text-6xl font-display text-[#C09A3C] mb-2">34%</div>
+                  <div class="text-[10px] font-tech uppercase tracking-[0.4em] text-white/20">Average Investor ROI</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8">
+            <div class="glass-card p-10 group">
+                <div class="w-12 h-12 bg-[#C09A3C]/10 rounded-xl flex items-center justify-center mb-8 text-[#C09A3C]">
+                    <i data-lucide="trending-up"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-4 group-hover:text-[#C09A3C] transition-colors uppercase tracking-tight">disciplined underwriting</h3>
+                <p class="text-white/50 text-sm leading-relaxed">Strict ARV (After-Repair Value) mapping and rehab budgeting ensure conservative risk controls.</p>
+            </div>
+            <div class="glass-card p-10 group">
+                <div class="w-12 h-12 bg-[#C09A3C]/10 rounded-xl flex items-center justify-center mb-8 text-[#C09A3C]">
+                    <i data-lucide="shield-check"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-4 group-hover:text-[#C09A3C] transition-colors uppercase tracking-tight">Open-Book Equity</h3>
+                <p class="text-white/50 text-sm leading-relaxed">Partner models based on pure equity or preferred return options with transparent transaction ledgers.</p>
+            </div>
+            <div class="glass-card p-10 group">
+                <div class="w-12 h-12 bg-[#C09A3C]/10 rounded-xl flex items-center justify-center mb-8 text-[#C09A3C]">
+                    <i data-lucide="sliders"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-4 group-hover:text-[#C09A3C] transition-colors uppercase tracking-tight">Interactive Showcase</h3>
+                <p class="text-white/50 text-sm leading-relaxed">High-fidelity before-and-after sliders demonstrating structural transformations visually.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pipeline Funnel -->
+    <section id="pipeline" class="py-32 px-8 max-w-7xl mx-auto border-t border-white/5">
+        <div class="flex flex-col lg:flex-row gap-20 items-center">
+            <div class="flex-1 glass-card p-10 bg-gradient-to-tr from-zinc-955 to-zinc-900 border-[#C09A3C]/15">
+                <h3 class="text-2xl font-bold mb-8 uppercase tracking-wide text-gradient-gold">Lead Pipeline Architecture</h3>
+                <div class="space-y-6">
+                    <div class="flex items-start gap-4">
+                        <div class="w-6 h-6 rounded bg-[#C09A3C]/20 text-[#C09A3C] flex items-center justify-center text-xs font-bold mt-1">1</div>
+                        <div>
+                            <h4 class="font-bold text-white uppercase text-sm">Investor Intent Trigger</h4>
+                            <p class="text-xs text-white/50 mt-1">Prospect selects "Request Investment Packet" on an active rehabilitation project card.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-4">
+                        <div class="w-6 h-6 rounded bg-[#C09A3C]/20 text-[#C09A3C] flex items-center justify-center text-xs font-bold mt-1">2</div>
+                        <div>
+                            <h4 class="font-bold text-white uppercase text-sm">Stateful Capture Modal</h4>
+                            <p class="text-xs text-white/50 mt-1">Custom interactive form overlay is activated. Forms feature strict client-side validation logic for phone and email integrity.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-4">
+                        <div class="w-6 h-6 rounded bg-[#C09A3C]/20 text-[#C09A3C] flex items-center justify-center text-xs font-bold mt-1">3</div>
+                        <div>
+                            <h4 class="font-bold text-white uppercase text-sm">Projections Mapping</h4>
+                            <p class="text-xs text-white/50 mt-1">Inquiry captures target allocation sizing ($10k-$250k+) to dynamically route data to appropriate underwriting profiles.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="flex-1">
+                <span class="font-tech text-[10px] uppercase tracking-[0.5em] text-[#C09A3C] font-bold block mb-4">User Acquisition</span>
+                <h2 class="font-display text-4xl sm:text-6xl md:text-8xl text-white leading-none">THE LEAD <br/><span class="text-white/10">PIPELINE.</span></h2>
+                <p class="text-lg text-white/40 mt-6 max-w-xl leading-relaxed">
+                    Converting casual traffic into active real estate equity partners. The hardened lead capture funnel streamlines client onboarding by pre-vetting investment scale, contact credentials, and property focus.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Architecture & Tech Stack -->
+    <section id="tech" class="py-32 px-8 max-w-7xl mx-auto border-t border-white/5">
+        <div class="text-center mb-20">
+            <span class="font-tech text-[10px] uppercase tracking-[0.5em] text-[#C09A3C] font-bold block mb-4">Engineering Blueprint</span>
+            <h2 class="font-display text-4xl sm:text-6xl md:text-8xl text-white leading-none">SYSTEM ARCHITECTURE</h2>
+        </div>
+        
+        <div class="grid md:grid-cols-2 gap-10">
+            <div class="glass-card p-10 border-white/5">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="w-10 h-10 bg-zinc-900 border border-[#C09A3C]/30 rounded-lg flex items-center justify-center text-[#C09A3C]"><i data-lucide="cpu"></i></div>
+                    <h3 class="text-xl font-bold uppercase tracking-tight">Core Frontend</h3>
+                </div>
+                <p class="text-sm text-white/50 leading-relaxed mb-6">
+                    Vite-powered single page application built on React 18. Structured with decoupled reusable components: slider telemetry (`BASlider`), seek cards (`InvestCard`), and rentals (`RentalCard`).
+                </p>
+                <div class="flex flex-wrap gap-2">
+                    <span class="text-[9px] font-tech uppercase tracking-wider bg-white/5 px-3 py-1 rounded">React 18</span>
+                    <span class="text-[9px] font-tech uppercase tracking-wider bg-white/5 px-3 py-1 rounded">Vite</span>
+                    <span class="text-[9px] font-tech uppercase tracking-wider bg-white/5 px-3 py-1 rounded">Vanilla CSS</span>
+                </div>
+            </div>
+
+            <div class="glass-card p-10 border-white/5">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="w-10 h-10 bg-zinc-900 border border-[#C09A3C]/30 rounded-lg flex items-center justify-center text-[#C09A3C]"><i data-lucide="cloud-lightning"></i></div>
+                    <h3 class="text-xl font-bold uppercase tracking-tight">Deployment & Caching</h3>
+                </div>
+                <p class="text-sm text-white/50 leading-relaxed mb-6">
+                    Built, optimized, and compiled for static distribution. Deployed securely on GitHub Pages using customized branch rewriting policies, static mime routing, and Vite base-path definitions.
+                </p>
+                <div class="flex flex-wrap gap-2">
+                    <span class="text-[9px] font-tech uppercase tracking-wider bg-white/5 px-3 py-1 rounded">GitHub Actions</span>
+                    <span class="text-[9px] font-tech uppercase tracking-wider bg-white/5 px-3 py-1 rounded">gh-pages</span>
+                    <span class="text-[9px] font-tech uppercase tracking-wider bg-white/5 px-3 py-1 rounded">MIME Safe</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-20 px-8 text-center border-t border-white/5">
+        <p class="text-[10px] font-tech uppercase tracking-[0.5em] text-white/10">© 2026 DTE Solutions // MW Properties Division // Engineered with Intention</p>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
