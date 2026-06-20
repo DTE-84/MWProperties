@@ -6,6 +6,10 @@ const INVESTMENTS = [
   {
     id: 1,
     address: "4218 Kingshighway Blvd",
+    link: "https://mw-properties-c2j5cshcx-dte-solutions.vercel.app/",
+    thumbnail: "/mwproperties_thumbnail.png",
+    link: "https://mw-properties-c2j5cshcx-dte-solutions.vercel.app/",
+    thumbnail: "/mwproperties_thumbnail.png",
     city: "St. Louis, MO 63116",
     type: "Single Family · 3BR / 2BA",
     sqft: "1,840",
@@ -24,6 +28,10 @@ const INVESTMENTS = [
   {
     id: 2,
     address: "1102 N 20th Street",
+    link: "https://mw-properties-c2j5cshcx-dte-solutions.vercel.app/",
+    thumbnail: "/mwproperties_thumbnail.png",
+    link: "https://mw-properties-c2j5cshcx-dte-solutions.vercel.app/",
+    thumbnail: "/mwproperties_thumbnail.png",
     city: "St. Louis, MO 63106",
     type: "Duplex · 2 × (2BR / 1BA)",
     sqft: "2,400",
@@ -42,6 +50,8 @@ const INVESTMENTS = [
   {
     id: 3,
     address: "822 Sycamore Lane",
+    link: "https://mw-properties-c2j5cshcx-dte-solutions.vercel.app/",
+    thumbnail: "/mwproperties_thumbnail.png",
     city: "Quincy, IL 62301",
     type: "Single Family · 4BR / 2BA",
     sqft: "2,100",
@@ -232,6 +242,59 @@ function BASlider({ img }) {
 // ─── Investment Card ───────────────────────────────────────────────────────────
 
 function InvestCard({ data, onRequestPacket }) {
+  const [open, setOpen] = useState(false);
+  const G = "#C09A3C";
+
+  return (
+    <div style={{ background: "#0F0F0D", padding: "28px" }}>
+      {data.thumbnail && (
+        <a href={data.link} target="_blank" rel="noopener noreferrer" style={{ display: "block", marginBottom: "12px" }}>
+          <img src={data.thumbnail} alt="Site thumbnail" style={{ width: "100%", borderRadius: "8px" }} />
+        </a>
+      )}
+      <div style={{ display: "inline-block", fontFamily: "'Space Mono', monospace", fontSize: "0.55rem", letterSpacing: "0.16em", textTransform: "uppercase", color: "#0D0D0B", background: G, padding: "4px 10px", marginBottom: "14px" }}>
+        Seeking Investors
+      </div>
+      <div style={{ borderBottom: "1px solid rgba(192,154,60,0.12)", paddingBottom: "16px", marginBottom: "20px" }}>
+        <div style={{ fontFamily: "'Playfair Display', serif", fontSize: "1.15rem", fontWeight: 700, color: "#FDFCFA", marginBottom: "3px" }}>{data.address}</div>
+        <div style={{ fontSize: "0.75rem", color: "#6E6D68" }}>{data.city}</div>
+        <div style={{ fontFamily: "'Space Mono', monospace", fontSize: "0.6rem", letterSpacing: "0.1em", color: "#9E9D98", marginTop: "7px" }}>{data.type} · {data.sqft} SF</div>
+      </div>
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px", marginBottom: "20px" }}>
+        {[["Purchase Price", data.purchasePrice, false], ["Rehab Budget", data.rehabBudget, false], ["After-Repair Value", data.arv, false], ["Total Capital Needed", data.totalNeeded, false], ["Projected Profit", data.projectedProfit, false], ["Projected ROI", data.roi + "%", true]].map(([l, v, hi]) => (
+          <div key={l}>
+            <div style={{ fontSize: "0.58rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "#6E6D68", marginBottom: "4px" }}>{l}</div>
+            <div style={{ fontFamily: "'Playfair Display', serif", fontSize: hi ? "1.45rem" : "0.98rem", fontWeight: 700, color: hi ? G : "#FDFCFA" }}>{v}</div>
+          </div>
+        ))}
+      </div>
+      <ul style={{ listStyle: "none", marginBottom: "20px" }}>
+        {data.highlights.map(h => (
+          <li key={h} style={{ fontSize: "0.76rem", color: "#9E9D98", padding: "6px 0", borderBottom: "1px solid rgba(255,255,255,0.04)", display: "flex", alignItems: "center", gap: "10px" }}>
+            <span style={{ width: "4px", height: "4px", background: G, display: "inline-block", flexShrink: 0 }} />{h}
+          </li>
+        ))}
+      </ul>
+      <button onClick={() => setOpen(!open)} style={{ width: "100%", textAlign: "left", background: "transparent", border: "1px solid rgba(192,154,60,0.22)", color: G, padding: "11px 15px", fontFamily: "'Space Mono', monospace", fontSize: "0.6rem", letterSpacing: "0.15em", textTransform: "uppercase", cursor: "pointer", display: "flex", justifyOrigin: "space-between", justifyContent: "space-between", alignItems: "center", marginBottom: open ? "0" : "16px" }}>
+        Contract Structure
+        <span style={{ display: "inline-block", transform: open ? "rotate(180deg)" : "none", transition: "transform 0.2s" }}>▾</span>
+      </button>
+      {open && (
+        <div style={{ background: "rgba(192,154,60,0.04)", border: "1px solid rgba(192,154,60,0.15)", borderTop: "none", padding: "14px", marginBottom: "16px" }}>
+          {[["Structure", data.contractType], ["Investor Share", data.investorShare], ["Timeline", data.timeline], ["Exit Strategy", data.exitStrategy]].map(([l, v]) => (
+            <div key={l} style={{ display: "flex", justifyOrigin: "space-between", justifyContent: "space-between", alignItems: "flex-start", fontSize: "0.78rem", padding: "7px 0", borderBottom: "1px solid rgba(192,154,60,0.06)" }}>
+              <span style={{ color: "#6E6D68", flexShrink: 0, marginRight: "12px" }}>{l}</span>
+              <span style={{ color: "#FDFCFA", fontWeight: 500, textAlign: "right", lineHeight: 1.4 }}>{v}</span>
+            </div>
+          ))}
+        </div>
+      )}
+      <button className="mw-invest-cta" onClick={() => onRequestPacket && onRequestPacket(data)} style={{ width: "100%", background: G, color: "#0D0D0B", border: "none", padding: "13px", fontFamily: "'Inter', sans-serif", fontSize: "0.7rem", fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", cursor: "pointer" }}>
+        Request Investment Packet
+      </button>
+    </div>
+  );
+}
   const [open, setOpen] = useState(false);
   const G = "#C09A3C";
 
