@@ -60,10 +60,10 @@ const INVESTMENTS = [
 ];
 
 const BEFORE_AFTER = [
-  { id: 1, address: "3404 Utah Street", city: "St. Louis, MO", completed: "March 2024", salePrice: "$142,000", profit: "$41,200", img: "https://picsum.photos/seed/mwhome11/900/675" },
-  { id: 2, address: "917 Hampshire Ave", city: "St. Louis, MO", completed: "August 2023", salePrice: "$168,000", profit: "$52,400", img: "https://picsum.photos/seed/mwhome22/900/675" },
-  { id: 3, address: "2218 Osage Street", city: "St. Louis, MO", completed: "November 2023", salePrice: "$155,000", profit: "$38,700", img: "https://picsum.photos/seed/mwhome33/900/675" },
-  { id: 4, address: "1507 Pestalozzi St", city: "St. Louis, MO", completed: "January 2024", salePrice: "$178,000", profit: "$59,100", img: "https://picsum.photos/seed/mwhome44/900/675" },
+  { id: 1, address: "3404 Utah Street", city: "St. Louis, MO", completed: "March 2024", salePrice: "$142,000", profit: "$41,200", img: "images/home_1.png" },
+  { id: 2, address: "917 Hampshire Ave", city: "St. Louis, MO", completed: "August 2023", salePrice: "$168,000", profit: "$52,400", img: "images/home_2.png" },
+  { id: 3, address: "2218 Osage Street", city: "St. Louis, MO", completed: "November 2023", salePrice: "$155,000", profit: "$38,700", img: "images/home_3.png" },
+  { id: 4, address: "1507 Pestalozzi St", city: "St. Louis, MO", completed: "January 2024", salePrice: "$178,000", profit: "$59,100", img: "images/home_4.png" },
 ];
 
 const RENTALS = [
@@ -171,6 +171,8 @@ function BASlider({ img }) {
   const [dragging, setDragging] = useState(false);
   const ref = useRef(null);
 
+  const imageSrc = img.startsWith("http") ? img : (import.meta.env.BASE_URL + img);
+
   const updatePos = useCallback((clientX) => {
     if (!ref.current) return;
     const rect = ref.current.getBoundingClientRect();
@@ -212,9 +214,9 @@ function BASlider({ img }) {
         border: "1px solid rgba(192,154,60,0.2)",
       }}
     >
-      <div style={{ position: "absolute", inset: 0, backgroundImage: `url(${img})`, backgroundSize: "cover", backgroundPosition: "center", filter: "grayscale(1) brightness(0.46) contrast(1.12)" }} />
+      <div style={{ position: "absolute", inset: 0, backgroundImage: `url(${imageSrc})`, backgroundSize: "cover", backgroundPosition: "center", filter: "grayscale(1) brightness(0.46) contrast(1.12)" }} />
       <div style={{ position: "absolute", inset: 0, clipPath: `inset(0 ${100 - pos}% 0 0)` }}>
-        <div style={{ position: "absolute", inset: 0, backgroundImage: `url(${img})`, backgroundSize: "cover", backgroundPosition: "center", filter: "saturate(1.15) brightness(1.06)" }} />
+        <div style={{ position: "absolute", inset: 0, backgroundImage: `url(${imageSrc})`, backgroundSize: "cover", backgroundPosition: "center", filter: "saturate(1.15) brightness(1.06)" }} />
       </div>
       <div style={{ position: "absolute", top: 0, bottom: 0, left: `${pos}%`, transform: "translateX(-50%)", width: "2px", background: "#C09A3C", display: "flex", alignItems: "center", justifyContent: "center", zIndex: 2, pointerEvents: "none" }}>
         <div style={{ width: "36px", height: "36px", background: "#C09A3C", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", boxShadow: "0 0 0 5px rgba(192,154,60,0.22), 0 2px 14px rgba(0,0,0,0.5)", flexShrink: 0 }}>
@@ -229,7 +231,7 @@ function BASlider({ img }) {
 
 // ─── Investment Card ───────────────────────────────────────────────────────────
 
-function InvestCard({ data }) {
+function InvestCard({ data, onRequestPacket }) {
   const [open, setOpen] = useState(false);
   const G = "#C09A3C";
 
@@ -261,7 +263,7 @@ function InvestCard({ data }) {
         ))}
       </ul>
 
-      <button onClick={() => setOpen(!open)} style={{ width: "100%", textAlign: "left", background: "transparent", border: "1px solid rgba(192,154,60,0.22)", color: G, padding: "11px 15px", fontFamily: "'Space Mono', monospace", fontSize: "0.6rem", letterSpacing: "0.15em", textTransform: "uppercase", cursor: "pointer", display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: open ? "0" : "16px" }}>
+      <button onClick={() => setOpen(!open)} style={{ width: "100%", textAlign: "left", background: "transparent", border: "1px solid rgba(192,154,60,0.22)", color: G, padding: "11px 15px", fontFamily: "'Space Mono', monospace", fontSize: "0.6rem", letterSpacing: "0.15em", textTransform: "uppercase", cursor: "pointer", display: "flex", justifyOrigin: "space-between", justifyContent: "space-between", alignItems: "center", marginBottom: open ? "0" : "16px" }}>
         Contract Structure
         <span style={{ display: "inline-block", transform: open ? "rotate(180deg)" : "none", transition: "transform 0.2s" }}>▾</span>
       </button>
@@ -269,7 +271,7 @@ function InvestCard({ data }) {
       {open && (
         <div style={{ background: "rgba(192,154,60,0.04)", border: "1px solid rgba(192,154,60,0.15)", borderTop: "none", padding: "14px", marginBottom: "16px" }}>
           {[["Structure", data.contractType], ["Investor Share", data.investorShare], ["Timeline", data.timeline], ["Exit Strategy", data.exitStrategy]].map(([l, v]) => (
-            <div key={l} style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", fontSize: "0.78rem", padding: "7px 0", borderBottom: "1px solid rgba(192,154,60,0.06)" }}>
+            <div key={l} style={{ display: "flex", justifyOrigin: "space-between", justifyContent: "space-between", alignItems: "flex-start", fontSize: "0.78rem", padding: "7px 0", borderBottom: "1px solid rgba(192,154,60,0.06)" }}>
               <span style={{ color: "#6E6D68", flexShrink: 0, marginRight: "12px" }}>{l}</span>
               <span style={{ color: "#FDFCFA", fontWeight: 500, textAlign: "right", lineHeight: 1.4 }}>{v}</span>
             </div>
@@ -277,7 +279,11 @@ function InvestCard({ data }) {
         </div>
       )}
 
-      <button className="mw-invest-cta" style={{ width: "100%", background: G, color: "#0D0D0B", border: "none", padding: "13px", fontFamily: "'Inter', sans-serif", fontSize: "0.7rem", fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", cursor: "pointer" }}>
+      <button 
+        className="mw-invest-cta" 
+        onClick={() => onRequestPacket && onRequestPacket(data)}
+        style={{ width: "100%", background: G, color: "#0D0D0B", border: "none", padding: "13px", fontFamily: "'Inter', sans-serif", fontSize: "0.7rem", fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", cursor: "pointer" }}
+      >
         Request Investment Packet
       </button>
     </div>
@@ -286,10 +292,10 @@ function InvestCard({ data }) {
 
 // ─── Rental Card ───────────────────────────────────────────────────────────────
 
-function RentalCard({ data }) {
+function RentalCard({ data, onInquire }) {
   return (
     <div style={{ background: "#F7F3EC", overflow: "hidden" }}>
-      <div style={{ background: "linear-gradient(145deg, #1A2635 0%, #0C1520 100%)", aspectRatio: "16/9", position: "relative", display: "flex", alignItems: "center", justifyContent: "center" }}>
+      <div style={{ background: "linear-gradient(145deg, #1A2635 0%, #0C1520 100%)", aspectRatio: "16/9", position: "relative", display: "flex", alignItems: "center", justifyOrigin: "center", justifyContent: "center" }}>
         <span style={{ fontFamily: "'Space Mono', monospace", fontSize: "0.6rem", letterSpacing: "0.18em", color: "rgba(192,154,60,0.35)", textTransform: "uppercase" }}>Property Photo</span>
         <span style={{ position: "absolute", top: "12px", right: "12px", fontFamily: "'Space Mono', monospace", fontSize: "0.55rem", letterSpacing: "0.1em", textTransform: "uppercase", padding: "5px 10px", background: data.available ? "rgba(18,70,38,0.92)" : "rgba(0,0,0,0.55)", color: data.available ? "#7DD3A8" : "#9E9D98" }}>
           {data.available ? "Available" : "Occupied"}
@@ -309,7 +315,11 @@ function RentalCard({ data }) {
             </li>
           ))}
         </ul>
-        <button style={{ marginTop: "18px", width: "100%", background: "transparent", border: `1px solid ${data.available ? "#0D0D0B" : "#C5BFB7"}`, color: data.available ? "#0D0D0B" : "#C5BFB7", padding: "12px", fontFamily: "'Inter', sans-serif", fontSize: "0.68rem", fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", cursor: data.available ? "pointer" : "not-allowed" }} disabled={!data.available}>
+        <button 
+          onClick={() => onInquire && onInquire(data)}
+          style={{ marginTop: "18px", width: "100%", background: "transparent", border: `1px solid ${data.available ? "#0D0D0B" : "#C5BFB7"}`, color: data.available ? "#0D0D0B" : "#C5BFB7", padding: "12px", fontFamily: "'Inter', sans-serif", fontSize: "0.68rem", fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", cursor: data.available ? "pointer" : "not-allowed" }} 
+          disabled={!data.available}
+        >
           {data.available ? "Inquire About This Unit" : "Currently Occupied"}
         </button>
       </div>
@@ -322,6 +332,9 @@ function RentalCard({ data }) {
 export default function App() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [modalType, setModalType] = useState("");
+  const [modalContextData, setModalContextData] = useState(null);
 
   useEffect(() => {
     const fn = () => setScrolled(window.scrollY > 40);
@@ -333,6 +346,12 @@ export default function App() {
     document.body.style.overflow = menuOpen ? "hidden" : "";
     return () => { document.body.style.overflow = ""; };
   }, [menuOpen]);
+
+  const triggerModal = (type, data = null) => {
+    setModalType(type);
+    setModalContextData(data);
+    setModalOpen(true);
+  };
 
   const G = "#C09A3C";
   const INK = "#0D0D0B";
@@ -358,7 +377,7 @@ export default function App() {
   return (
     <div style={{ fontFamily: "'Inter', sans-serif", background: INK, color: WHITE, overflowX: "hidden" }}>
       <style>{CSS}</style>
-
+ 
       {/* ── Mobile overlay menu ── */}
       <div className={`mw-mobile-overlay ${menuOpen ? "open" : ""}`}>
         <button onClick={() => setMenuOpen(false)} style={{ position: "absolute", top: "18px", right: "20px", background: "transparent", border: "none", cursor: "pointer", color: WHITE }}>
@@ -370,9 +389,9 @@ export default function App() {
             {label}
           </a>
         ))}
-        <a href="#contact" onClick={() => setMenuOpen(false)} style={{ display: "inline-block", marginTop: "30px", fontSize: "0.7rem", fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", color: INK, background: G, padding: "14px 28px", textDecoration: "none", alignSelf: "flex-start" }}>
+        <button onClick={() => { setMenuOpen(false); triggerModal("general"); }} style={{ border: "none", display: "inline-block", marginTop: "30px", fontSize: "0.7rem", fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", color: INK, background: G, padding: "14px 28px", alignSelf: "flex-start", cursor: "pointer" }}>
           Contact Marcus
-        </a>
+        </button>
       </div>
 
       {/* ── NAV ── */}
@@ -394,9 +413,9 @@ export default function App() {
               {label}
             </a>
           ))}
-          <a href="#contact" style={{ fontSize: "0.7rem", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: INK, background: G, padding: "10px 22px", textDecoration: "none" }}>
+          <button onClick={() => triggerModal("general")} style={{ border: "none", fontSize: "0.7rem", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: INK, background: G, padding: "10px 22px", cursor: "pointer" }}>
             Contact Marcus
-          </a>
+          </button>
         </div>
         <button className="mw-hamburger" onClick={() => setMenuOpen(true)}>
           <svg width="22" height="15" viewBox="0 0 22 15" fill="none"><path d="M1 1H21M1 7.5H21M1 14H21" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg>
@@ -479,7 +498,7 @@ export default function App() {
           <Title>Open Investment Deals</Title>
           <Sub>Each project is actively seeking investor capital. All deals come with full documentation — request any packet for due diligence materials, comps, and contract drafts.</Sub>
           <div className="mw-invest-grid">
-            {INVESTMENTS.map(inv => <InvestCard key={inv.id} data={inv} />)}
+            {INVESTMENTS.map(inv => <InvestCard key={inv.id} data={inv} onRequestPacket={(data) => triggerModal("packet", data)} />)}
           </div>
         </div>
       </section>
@@ -522,7 +541,7 @@ export default function App() {
           <Title light>Rental Properties</Title>
           <Sub>Renovated, professionally managed, and move-in ready. Available units are first-come basis — waitlist open for occupied properties.</Sub>
           <div className="mw-rental-grid">
-            {RENTALS.map(r => <RentalCard key={r.id} data={r} />)}
+            {RENTALS.map(r => <RentalCard key={r.id} data={r} onInquire={(data) => triggerModal("rental", data)} />)}
           </div>
         </div>
       </section>
@@ -533,9 +552,9 @@ export default function App() {
           <div style={{ fontFamily: serif, fontSize: "clamp(1.3rem, 4vw, 1.6rem)", fontWeight: 700, color: INK, marginBottom: "6px" }}>Ready to Invest With Marcus?</div>
           <div style={{ fontSize: "0.87rem", color: "rgba(13,13,11,0.6)" }}>Full deal packets available on request. Let's talk numbers.</div>
         </div>
-        <a href="#contact" className="mw-ghost-btn" style={{ display: "inline-block", fontSize: "0.7rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: G, background: INK, padding: "14px 32px", textDecoration: "none", transition: "all 0.2s", whiteSpace: "nowrap" }}>
+        <button onClick={() => triggerModal("general")} className="mw-ghost-btn" style={{ display: "inline-block", border: `1px solid ${INK}`, fontSize: "0.7rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: G, background: INK, padding: "14px 32px", textDecoration: "none", transition: "all 0.2s", whiteSpace: "nowrap", cursor: "pointer" }}>
           Get in Touch →
-        </a>
+        </button>
       </div>
 
       {/* ── FOOTER ── */}
@@ -574,6 +593,196 @@ export default function App() {
           </div>
         </div>
       </footer>
+
+      {/* ── CONTACT & LEAD CAPTURE MODAL ── */}
+      <ContactModal isOpen={modalOpen} onClose={() => setModalOpen(false)} type={modalType} contextData={modalContextData} />
+    </div>
+  );
+}
+
+// ─── Contact Modal Component ───────────────────────────────────────────────────
+
+function ContactModal({ isOpen, onClose, type, contextData }) {
+  const [formData, setFormData] = useState({ name: "", email: "", phone: "", message: "", capital: "50k-100k" });
+  const [errors, setErrors] = useState({});
+  const [submitted, setSubmitted] = useState(false);
+
+  useEffect(() => {
+    if (isOpen) {
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        message: type === "rental" 
+          ? `Hi Marcus, I'm interested in renting the property at ${contextData?.address || ""}.`
+          : type === "packet"
+          ? `Hi Marcus, I'm interested in receiving the investment packet for ${contextData?.address || ""}.`
+          : "",
+        capital: "50k-100k"
+      });
+      setErrors({});
+      setSubmitted(false);
+    }
+  }, [isOpen, type, contextData]);
+
+  if (!isOpen) return null;
+
+  const validate = () => {
+    let tempErrors = {};
+    if (!formData.name.trim()) tempErrors.name = "Name is required";
+    
+    if (!formData.email.trim()) {
+      tempErrors.email = "Email is required";
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      tempErrors.email = "Email address is invalid";
+    }
+
+    if (!formData.phone.trim()) {
+      tempErrors.phone = "Phone is required";
+    } else if (!/^\+?[\d\s-]{7,15}$/.test(formData.phone.replace(/[\(\)\+\-\s]/g, ""))) {
+      tempErrors.phone = "Phone number is invalid";
+    }
+
+    setErrors(tempErrors);
+    return Object.keys(tempErrors).length === 0;
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (validate()) {
+      setSubmitted(true);
+    }
+  };
+
+  const G = "#C09A3C";
+  const INK = "#0D0D0B";
+  const MUTED_L = "#9E9D98";
+  const WHITE = "#FDFCFA";
+  const mono = "'Space Mono', monospace";
+  const serif = "'Playfair Display', serif";
+
+  return (
+    <div style={{
+      position: "fixed", inset: 0, zIndex: 1000,
+      display: "flex", alignItems: "center", justifyContent: "center",
+      background: "rgba(13,13,11,0.85)", backdropFilter: "blur(12px)",
+      padding: "20px"
+    }}>
+      <div style={{
+        background: "#0F0F0D", border: `1px solid ${G}44`,
+        width: "100%", maxWidth: "500px", padding: "36px",
+        position: "relative", boxShadow: "0 24px 64px rgba(0,0,0,0.8)"
+      }}>
+        {/* Close Button */}
+        <button onClick={onClose} style={{
+          position: "absolute", top: "18px", right: "20px",
+          background: "transparent", border: "none", cursor: "pointer", color: WHITE
+        }}>
+          <svg width="18" height="18" viewBox="0 0 22 22" fill="none"><path d="M17 5L5 17M5 5L17 17" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/></svg>
+        </button>
+
+        {!submitted ? (
+          <form onSubmit={handleSubmit}>
+            <h3 style={{ fontFamily: serif, fontSize: "1.8rem", fontWeight: 700, color: WHITE, marginBottom: "8px" }}>
+              {type === "packet" ? "Request Packet" : type === "rental" ? "Rental Inquiry" : "Get in Touch"}
+            </h3>
+            <p style={{ fontSize: "0.8rem", color: MUTED_L, marginBottom: "24px", lineHeight: 1.4 }}>
+              {type === "packet" 
+                ? `Submit your details to receive the investment prospectus for ${contextData?.address}.` 
+                : type === "rental"
+                ? `Inquire about the available rental property at ${contextData?.address}.`
+                : "Have a project or partnership in mind? Let's connect."}
+            </p>
+
+            {/* Inputs */}
+            <div style={{ display: "flex", flexDirection: "column", gap: "16px", marginBottom: "28px" }}>
+              <div>
+                <label style={{ fontFamily: mono, fontSize: "0.58rem", letterSpacing: "0.15em", textTransform: "uppercase", color: MUTED_L, display: "block", marginBottom: "6px" }}>Full Name</label>
+                <input 
+                  type="text" 
+                  value={formData.name} 
+                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                  style={{ width: "100%", background: "#161614", border: `1px solid ${errors.name ? "#FF4A4A" : "rgba(255,255,255,0.08)"}`, color: WHITE, padding: "12px", fontSize: "0.85rem", fontFamily: "'Inter', sans-serif" }} 
+                  placeholder="Drew Ernst"
+                />
+                {errors.name && <span style={{ fontSize: "0.68rem", color: "#FF4A4A", marginTop: "4px", display: "block" }}>{errors.name}</span>}
+              </div>
+
+              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px" }}>
+                <div>
+                  <label style={{ fontFamily: mono, fontSize: "0.58rem", letterSpacing: "0.15em", textTransform: "uppercase", color: MUTED_L, display: "block", marginBottom: "6px" }}>Email</label>
+                  <input 
+                    type="email" 
+                    value={formData.email} 
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    style={{ width: "100%", background: "#161614", border: `1px solid ${errors.email ? "#FF4A4A" : "rgba(255,255,255,0.08)"}`, color: WHITE, padding: "12px", fontSize: "0.85rem", fontFamily: "'Inter', sans-serif" }}
+                    placeholder="drew@dte-solutions.icu"
+                  />
+                  {errors.email && <span style={{ fontSize: "0.68rem", color: "#FF4A4A", marginTop: "4px", display: "block" }}>{errors.email}</span>}
+                </div>
+                <div>
+                  <label style={{ fontFamily: mono, fontSize: "0.58rem", letterSpacing: "0.15em", textTransform: "uppercase", color: MUTED_L, display: "block", marginBottom: "6px" }}>Phone</label>
+                  <input 
+                    type="text" 
+                    value={formData.phone} 
+                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                    style={{ width: "100%", background: "#161614", border: `1px solid ${errors.phone ? "#FF4A4A" : "rgba(255,255,255,0.08)"}`, color: WHITE, padding: "12px", fontSize: "0.85rem", fontFamily: "'Inter', sans-serif" }}
+                    placeholder="(314) 555-0100"
+                  />
+                  {errors.phone && <span style={{ fontSize: "0.68rem", color: "#FF4A4A", marginTop: "4px", display: "block" }}>{errors.phone}</span>}
+                </div>
+              </div>
+
+              {type === "packet" && (
+                <div>
+                  <label style={{ fontFamily: mono, fontSize: "0.58rem", letterSpacing: "0.15em", textTransform: "uppercase", color: MUTED_L, display: "block", marginBottom: "6px" }}>Capital Allocation Target</label>
+                  <select 
+                    value={formData.capital} 
+                    onChange={(e) => setFormData({ ...formData, capital: e.target.value })}
+                    style={{ width: "100%", background: "#161614", border: "1px solid rgba(255,255,255,0.08)", color: WHITE, padding: "12px", fontSize: "0.85rem", fontFamily: "'Inter', sans-serif" }}
+                  >
+                    <option value="10k-50k">$10,000 – $50,000</option>
+                    <option value="50k-100k">$50,000 – $100,000</option>
+                    <option value="100k-250k">$100,000 – $250,000</option>
+                    <option value="250k+">$250,000+</option>
+                  </select>
+                </div>
+              )}
+
+              <div>
+                <label style={{ fontFamily: mono, fontSize: "0.58rem", letterSpacing: "0.15em", textTransform: "uppercase", color: MUTED_L, display: "block", marginBottom: "6px" }}>Message</label>
+                <textarea 
+                  value={formData.message} 
+                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                  style={{ width: "100%", background: "#161614", border: "1px solid rgba(255,255,255,0.08)", color: WHITE, padding: "12px", fontSize: "0.85rem", fontFamily: "'Inter', sans-serif", height: "100px", resize: "none" }}
+                  placeholder="Provide details about your inquiry..."
+                />
+              </div>
+            </div>
+
+            <button type="submit" style={{ width: "100%", background: G, color: INK, border: "none", padding: "14px", fontFamily: "'Inter', sans-serif", fontSize: "0.75rem", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", cursor: "pointer" }}>
+              Submit Inquiry
+            </button>
+          </form>
+        ) : (
+          <div style={{ textAlign: "center", padding: "20px 0" }}>
+            <div style={{ width: "64px", height: "64px", borderRadius: "50%", border: `2px solid ${G}`, display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 24px" }}>
+              <svg width="28" height="20" viewBox="0 0 28 20" fill="none">
+                <path d="M2 10L10 18L26 2" stroke={G} strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </div>
+            <h3 style={{ fontFamily: serif, fontSize: "1.8rem", fontWeight: 700, color: WHITE, marginBottom: "12px" }}>
+              Transmission Received
+            </h3>
+            <p style={{ fontSize: "0.85rem", color: MUTED_L, lineHeight: 1.6, maxWidth: "320px", margin: "0 auto 28px" }}>
+              Thank you, {formData.name}. Your inquiry details have been processed. Marcus will follow up with you at {formData.email} within 24 business hours.
+            </p>
+            <button onClick={onClose} style={{ background: "transparent", border: `1px solid rgba(192,154,60,0.4)`, color: G, padding: "10px 24px", fontSize: "0.7rem", fontFamily: mono, letterSpacing: "0.15em", textTransform: "uppercase", cursor: "pointer" }}>
+              Dismiss
+            </button>
+          </div>
+        )}
+      </div>
     </div>
   );
 }
