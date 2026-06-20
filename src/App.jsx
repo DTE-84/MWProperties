@@ -6,8 +6,6 @@ const INVESTMENTS = [
   {
     id: 1,
     address: "4218 Kingshighway Blvd",
-    link: "https://mw-properties-c2j5cshcx-dte-solutions.vercel.app/",
-    thumbnail: "/mwpropertiesmain.png",
     city: "St. Louis, MO 63116",
     type: "Single Family · 3BR / 2BA",
     sqft: "1,840",
@@ -26,8 +24,6 @@ const INVESTMENTS = [
   {
     id: 2,
     address: "1102 N 20th Street",
-    link: "https://mw-properties-c2j5cshcx-dte-solutions.vercel.app/",
-    thumbnail: "/mwproperties_thumbnail.png",
     city: "St. Louis, MO 63106",
     type: "Duplex · 2 × (2BR / 1BA)",
     sqft: "2,400",
@@ -46,8 +42,6 @@ const INVESTMENTS = [
   {
     id: 3,
     address: "822 Sycamore Lane",
-    link: "https://mw-properties-c2j5cshcx-dte-solutions.vercel.app/",
-    thumbnail: "/mwproperties_thumbnail.png",
     city: "Quincy, IL 62301",
     type: "Single Family · 4BR / 2BA",
     sqft: "2,100",
@@ -365,7 +359,13 @@ export default function App() {
   const mono = "'Space Mono', monospace";
   const serif = "'Playfair Display', serif";
 
-  const navLinks = [["about","About"],["invest","Invest"],["portfolio","Portfolio"],["rentals","Rentals"],["breakdown","Breakdown"]];
+  const navLinks = [
+    { id: "about", label: "About", path: "#about" },
+    { id: "invest", label: "Invest", path: "#invest" },
+    { id: "portfolio", label: "Portfolio", path: "#portfolio" },
+    { id: "rentals", label: "Rentals", path: "#rentals" },
+    { id: "breakdown", label: "Breakdown", path: "mwproperties-breakdown.html" }
+  ];
 
   const Eyebrow = ({ text, dark }) => (
     <p style={{ fontFamily: mono, fontSize: "0.65rem", letterSpacing: "0.24em", textTransform: "uppercase", color: dark ? "#8A6E28" : G, marginBottom: "14px" }}>{text}</p>
@@ -387,8 +387,8 @@ export default function App() {
           <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M17 5L5 17M5 5L17 17" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg>
         </button>
         <div style={{ fontFamily: serif, fontSize: "1.1rem", fontWeight: 700, marginBottom: "44px" }}>MW<span style={{ color: G }}>&</span> Properties</div>
-        {navLinks.map(([id, label]) => (
-          <a key={id} href={`#${id}`} onClick={() => setMenuOpen(false)} style={{ fontFamily: mono, fontSize: "0.78rem", letterSpacing: "0.2em", textTransform: "uppercase", color: MUTED_L, textDecoration: "none", padding: "18px 0", borderBottom: "1px solid rgba(192,154,60,0.1)" }}>
+        {navLinks.map(({ id, label, path }) => (
+          <a key={id} href={path} onClick={() => setMenuOpen(false)} style={{ fontFamily: mono, fontSize: "0.78rem", letterSpacing: "0.2em", textTransform: "uppercase", color: MUTED_L, textDecoration: "none", padding: "18px 0", borderBottom: "1px solid rgba(192,154,60,0.1)" }}>
             {label}
           </a>
         ))}
@@ -411,8 +411,8 @@ export default function App() {
           MW<span style={{ color: G }}>&</span> Properties
         </span>
         <div className="mw-nav-desktop">
-          {navLinks.map(([id, label]) => (
-            <a key={id} href={`#${id}`} className="mw-nav-link" style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.7rem", fontWeight: 500, letterSpacing: "0.12em", textTransform: "uppercase", color: MUTED_L, textDecoration: "none", transition: "color 0.18s" }}>
+          {navLinks.map(({ id, label, path }) => (
+            <a key={id} href={path} className="mw-nav-link" style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.7rem", fontWeight: 500, letterSpacing: "0.12em", textTransform: "uppercase", color: MUTED_L, textDecoration: "none", transition: "color 0.18s" }}>
               {label}
             </a>
           ))}
@@ -555,7 +555,7 @@ export default function App() {
           <div style={{ fontFamily: serif, fontSize: "clamp(1.3rem, 4vw, 1.6rem)", fontWeight: 700, color: INK, marginBottom: "6px" }}>Ready to Invest With Marcus?</div>
           <div style={{ fontSize: "0.87rem", color: "rgba(13,13,11,0.6)" }}>Full deal packets available on request. Let's talk numbers.</div>
         </div>
-          <a href="/mwproperties-breakdown.html" style={{ display: "inline-block", border: `1px solid ${INK}`, fontSize: "0.7rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: G, background: INK, padding: "14px 32px", textDecoration: "none", transition: "all 0.2s", whiteSpace: "nowrap", cursor: "pointer", marginLeft: "12px" }}>Breakdown</a>
+          <a href="mwproperties-breakdown.html" style={{ display: "inline-block", border: `1px solid ${INK}`, fontSize: "0.7rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: G, background: INK, padding: "14px 32px", textDecoration: "none", transition: "all 0.2s", whiteSpace: "nowrap", cursor: "pointer", marginLeft: "12px" }}>Breakdown</a>
 
       </div>
 
@@ -571,9 +571,9 @@ export default function App() {
             </div>
             <div>
               <div style={{ fontFamily: mono, fontSize: "0.56rem", letterSpacing: "0.2em", textTransform: "uppercase", color: G, marginBottom: "16px" }}>Navigate</div>
-              {navLinks.map(([id, label]) => (
+              {navLinks.map(({ id, label, path }) => (
                 <div key={id} style={{ marginBottom: "10px" }}>
-                  <a href={`#${id}`} style={{ fontSize: "0.81rem", color: MUTED, textDecoration: "none" }}>{label}</a>
+                  <a href={path} style={{ fontSize: "0.81rem", color: MUTED, textDecoration: "none" }}>{label}</a>
                 </div>
               ))}
             </div>
